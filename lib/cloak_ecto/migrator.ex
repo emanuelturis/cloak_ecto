@@ -11,7 +11,7 @@ defmodule Cloak.Ecto.Migrator do
 
     [primary_key | _] = schema.__schema__(:primary_key)
 
-    case repo.aggregate(schema, :count, primary_key) do
+    case repo.aggregate(schema, :count, primary_key, skip_user_id: true) do
       0 -> :ok
       _ -> migrate_schema_with_data(repo, schema)
     end
