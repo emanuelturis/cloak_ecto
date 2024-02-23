@@ -35,7 +35,7 @@ defmodule Cloak.Ecto.Migrator do
         |> where([s], field(s, ^primary_key) == ^id)
         |> lock("FOR UPDATE")
 
-      case repo.one(query) do
+      case repo.one(query, skip_user_id: true) do
         nil ->
           :noop
 
