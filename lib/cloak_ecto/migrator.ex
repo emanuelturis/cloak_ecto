@@ -42,7 +42,7 @@ defmodule Cloak.Ecto.Migrator do
         row ->
           row
           |> force_changes(fields)
-          |> repo.update()
+          |> repo.update(skip_user_id: true)
       end
     end)
   end
